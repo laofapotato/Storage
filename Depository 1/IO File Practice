@@ -1,0 +1,16 @@
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+int main()
+{
+    ofstream outStream;
+    outStream.open("E:Outfile.txt");
+
+    outStream << "Liu Yuqi is just a pig from Shiyan.";
+    outStream.close();
+    outStream.open("File2.txt");
+    outStream << "Lin Jing is a beauty";
+    outStream.close();
+    return 0;
+}
