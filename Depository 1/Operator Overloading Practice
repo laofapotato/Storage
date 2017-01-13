@@ -1,0 +1,86 @@
+#include <iostream>
+#include <string>
+#include <cctype>
+
+using namespace std;
+
+class Student
+{
+public:
+	Student();
+	Student(int ID, int grade);
+	int getStudentGrade() const;
+	int getStudentID() const;
+	bool getOlder();
+	const Student operator +(const Student& s2) const;
+	const Student operator -(const Student& s2) const;
+	const Student operator -() const;
+	bool operator ==(const Student& s2) const;
+private:
+	int m_id;
+	int m_grade;
+};
+
+Student::Student()
+{
+	m_id = 0;
+	m_grade = 1;
+}
+
+Student::Student(int ID, int grade)
+{
+	m_grade = grade;
+	m_id = ID;
+}
+
+int Student::getStudentGrade() const
+{
+	return m_grade;
+}
+
+int Student::getStudentID() const
+{
+	return m_id;
+}
+
+bool Student::getOlder()
+{
+	if (m_grade == 12)
+		return false;
+
+	m_grade++;
+	return true;
+}
+
+const Student Student::operator+(const Student& s2) const
+{
+    int new_id = m_id + s2.m_id;
+    int new_grade = m_grade + s2.m_grade;
+    return Student(new_id, new_grade);
+}
+
+const Student Student::operator-(const Student& s2) const
+{
+    int new_id = m_id - s2.m_id;
+    int new_grade = m_grade - s2.m_grade;
+    return Student(new_id, new_grade);
+}
+
+const Student Student::operator-() const
+{
+    return Student (-m_id, -m_grade);
+}
+
+bool Student::operator==(const Student& s2) const
+{
+    return ((m_id == s2.m_id) && (m_grade == s2.m_grade));
+}
+
+int main()
+{
+    Student Derek(20, 10);
+    Student Piggy(18, 10);
+    Student James;
+    James = Derek + Piggy;
+    cout << James.getStudentID();
+}
